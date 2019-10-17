@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
-  return (
-    <div className="App">
+  const [count, setCounter] = React.useState(0);
+  const handleButtonClick = () => {
+    setCounter(prevCount => prevCount + 1);
+  }
+  if (count > 5) {
+    throw new Error('App crashed');
+  }
+  else {
+    return (
       <header className="App-header">
+        BUGSNAG
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          click on the button more than five times to end the world
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="App">
+          <button
+            onClick={handleButtonClick}
+          >
+            End of world
+          </button>
+        </div>
       </header>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
